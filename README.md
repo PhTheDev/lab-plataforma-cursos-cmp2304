@@ -83,7 +83,7 @@ Opcionalmente, voce pode usar uma extensao de servidor local (ex.: Live Server) 
 
 ## Autor
 
-Pedro Henrique
+Pedro Henrique Faria dos Santos Soares: Eng. de Software e Aluno de Eng. da computação
 
 ---
 
