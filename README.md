@@ -85,9 +85,4 @@ Opcionalmente, voce pode usar uma extensao de servidor local (ex.: Live Server) 
 
 Pedro Henrique Faria dos Santos Soares: Eng. de Software e Aluno de Eng. da computação
 
----
 
-Se quiser, posso gerar tambem uma versao "README de entrega" com:
-- checklist de requisitos do PDF (item por item)
-- prints sugeridos
-- roteiro de apresentacao em 2-3 minutos
