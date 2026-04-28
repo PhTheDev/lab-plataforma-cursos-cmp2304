@@ -1,10 +1,10 @@
 /**
- * main.mjs — Entry point do Painel Administrativo (admin.html)
- * Realiza seed de dados e inicializa todos os controllers do admin.
+ * admin.mjs — Entry point do Painel Administrativo
+ * Importa seedData do main.mjs (dados compartilhados) e inicializa os controllers.
  */
 import { db } from './service/DbService.mjs';
-import { seedData } from './seed.mjs';
 import { requireAuth, logout } from './controller/AuthController.mjs';
+import { seedData } from './main.mjs';
 
 import { initNavbar, refreshSelects } from './controller/NavbarController.mjs';
 import { initAcademicoHandlers, renderCursosCategoria, renderTrilhaCursos } from './controller/AcademicoController.mjs';
@@ -48,21 +48,4 @@ document.addEventListener('DOMContentLoaded', () => {
   renderMatriculas();
   renderProgresso();
   renderPagamentos();
-
-  // Atualiza chips de estatísticas
-  updateStats();
-
-  // Re-atualiza stats quando qualquer form do admin é submetido
-  document.querySelectorAll('form').forEach(form => {
-    form.addEventListener('submit', () => setTimeout(updateStats, 50));
-  });
 });
-
-function updateStats() {
-  const sc = document.getElementById('statCursos');
-  const su = document.getElementById('statUsuarios');
-  const sa = document.getElementById('statAulas');
-  if (sc) sc.textContent = db.cursos.length;
-  if (su) su.textContent = db.usuarios.length;
-  if (sa) sa.textContent = db.aulas.length;
-}
