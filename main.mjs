@@ -2,7 +2,7 @@
  * main.mjs — Entry point do Painel Administrativo (admin.html)
  * Realiza seed de dados e inicializa todos os controllers do admin.
  */
-import { db } from './service/DbService.mjs';
+import { db, clearDb } from './service/DbService.mjs';
 import { seedData } from './seed.mjs';
 import { requireAuth, logout } from './controller/AuthController.mjs';
 
@@ -32,6 +32,14 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btnLogout')?.addEventListener('click', () => {
     logout();
     window.location.href = 'index.html';
+  });
+
+  // Botão limpar todos os dados
+  document.getElementById('btnClearDb')?.addEventListener('click', () => {
+    if (confirm('⚠️ Isso vai apagar TODOS os dados cadastrados (cursos, aulas, usuários, etc.) e recarregar a página. Continuar?')) {
+      logout();
+      clearDb(); // limpa localStorage e recarrega
+    }
   });
 
   // Inicializa todos os modules do admin

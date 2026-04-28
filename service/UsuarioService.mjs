@@ -1,4 +1,4 @@
-import { db, counters, nowIso, passwordHash } from './DbService.mjs';
+import { db, counters, nowIso, passwordHash, saveDb } from './DbService.mjs';
 import { Usuario } from '../model/Usuario.mjs';
 import { Matricula } from '../model/Matricula.mjs';
 import { ProgressoAula } from '../model/ProgressoAula.mjs';
@@ -34,6 +34,7 @@ export class UsuarioService {
     if (existente) {
       existente.status = status;
       existente.dataConclusao = nowIso();
+      saveDb(); // update direto não passa por push — salva manualmente
     } else {
       db.progressoAulas.push(new ProgressoAula(idUsuario, idAula, nowIso(), status));
     }

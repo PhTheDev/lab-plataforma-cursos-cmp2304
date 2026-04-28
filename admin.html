@@ -48,20 +48,30 @@
                         <i class="bi bi-shield-fill-check me-2 text-accent"></i>Painel Administrativo
                     </h1>
                     <p class="text-secondary mb-0 small">Gerencie categorias, cursos, conteúdo, usuários e financeiro.</p>
+                    <span class="admin-stat-chip mt-2" style="font-size:0.75rem; opacity:0.75;">
+                        <i class="bi bi-hdd me-1"></i>Dados salvos automaticamente no localStorage
+                    </span>
                 </div>
-                <div id="adminStats" class="d-flex gap-3 flex-wrap">
-                    <div class="admin-stat-chip">
-                        <i class="bi bi-journal-richtext me-1"></i>
-                        <span id="statCursos">0</span> cursos
+                <div class="d-flex flex-column gap-2 align-items-end">
+                    <div id="adminStats" class="d-flex gap-2 flex-wrap justify-content-end">
+                        <div class="admin-stat-chip">
+                            <i class="bi bi-journal-richtext me-1"></i>
+                            <span id="statCursos">0</span> cursos
+                        </div>
+                        <div class="admin-stat-chip">
+                            <i class="bi bi-people me-1"></i>
+                            <span id="statUsuarios">0</span> usuários
+                        </div>
+                        <div class="admin-stat-chip">
+                            <i class="bi bi-play-btn me-1"></i>
+                            <span id="statAulas">0</span> aulas
+                        </div>
                     </div>
-                    <div class="admin-stat-chip">
-                        <i class="bi bi-people me-1"></i>
-                        <span id="statUsuarios">0</span> usuários
-                    </div>
-                    <div class="admin-stat-chip">
-                        <i class="bi bi-play-btn me-1"></i>
-                        <span id="statAulas">0</span> aulas
-                    </div>
+                    <button id="btnClearDb" class="btn btn-sm"
+                        style="border:1px solid rgba(248,113,113,0.4);color:#f87171;background:rgba(127,29,29,0.2);font-size:0.78rem;"
+                        title="Remove todos os dados e recarrega a página">
+                        <i class="bi bi-trash me-1"></i>Limpar todos os dados
+                    </button>
                 </div>
             </div>
         </header>

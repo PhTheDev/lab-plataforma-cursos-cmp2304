@@ -2,7 +2,7 @@
  * AuthController — gerencia sessão em sessionStorage
  * Sessão armazenada: { id, nomeCompleto, role }
  */
-import { db, counters, passwordHash, nowIso } from '../service/DbService.mjs';
+import { db, counters, passwordHash, nowIso, saveDb } from '../service/DbService.mjs';
 import { Usuario } from '../model/Usuario.mjs';
 
 const SESSION_KEY = 'ph_session';
