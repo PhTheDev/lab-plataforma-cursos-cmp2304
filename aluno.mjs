@@ -5,7 +5,8 @@ import { seedData } from './seed.mjs';
 import { requireAuth, logout } from './controller/AuthController.mjs';
 import {
   setUsuario, renderCatalogo, abrirCurso,
-  abrirAula, marcarConcluida, voltarCatalogo
+  abrirAula, marcarConcluida, voltarCatalogo,
+  confirmarCompra
 } from './controller/AlunoController.mjs';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -44,6 +45,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const idAula = Number(e.currentTarget.dataset.aulaId);
     marcarConcluida(idAula);
   });
+
+  // Checkout — método de pagamento via radios
+  document.querySelectorAll('[name="checkoutMetodoRadio"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      const metodoInput = document.getElementById('checkoutMetodo');
+      if (metodoInput) metodoInput.value = radio.value;
+    });
+  });
+
+  // Checkout — confirmar compra
+  document.getElementById('btnConfirmarCompra')?.addEventListener('click', confirmarCompra);
 
   // Define o usuário logado no controller
   setUsuario(session.id);

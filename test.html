@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Teste de Persistência</title>
+    <style>
+        body { font-family: monospace; background: #0f172a; color: #e2e8f0; padding: 2rem; }
+        .pass { color: #34d399; }
+        .fail { color: #f87171; }
+        pre { background: #1e293b; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Teste de Persistência — DbService</h1>
+    <pre id="output">Executando testes...</pre>
+
+    <script type="module">
+        import { db, counters, saveDb, clearDb } from './service/DbService.mjs';
+        import { seedData } from './seed.mjs';
+
+        const out = document.getElementById('output');
+        const log = [];
+        let passed = 0;
+        let failed = 0;
+
+        function assert(label, condition) {
+            if (condition) {
+                log.push(`✅ PASS: ${label}`);
+                passed++;
+            } else {
+                log.push(`❌ FAIL: ${label}`);
+                failed++;
+            }
+        }
+
+        // ── Fase de teste ───────────────────────────────────────────
+
+        // 1. Seed deve popular os arrays (se ainda não estiverem populados)
+        seedData();
+
+        log.push('── Estado após seed ──');
+        log.push(`  usuarios: ${db.usuarios.length}`);
+        log.push(`  categorias: ${db.categorias.length}`);
+        log.push(`  cursos: ${db.cursos.length}`);
+        log.push(`  modulos: ${db.modulos.length}`);
+        log.push(`  aulas: ${db.aulas.length}`);
+        log.push(`  counters: ${JSON.stringify(counters)}`);
+        log.push('');
+
+        assert('Existem usuários em memória', db.usuarios.length >= 2);
+        assert('Existem cursos em memória', db.cursos.length >= 1);
+        assert('Existem aulas em memória', db.aulas.length >= 1);
+
+        // 2. Verificar se localStorage tem dados
+        const rawDb = localStorage.getItem('ph_db_v3');
+        assert('localStorage ph_db_v3 existe', rawDb !== null);
+
+        if (rawDb) {
+            const saved = JSON.parse(rawDb);
+            log.push('');
+            log.push('── Estado no localStorage ──');
+            Object.keys(saved).forEach(k => {
+                if (saved[k]?.length > 0) {
+                    log.push(`  ${k}: ${saved[k].length} itens`);
+                }
+            });
+            log.push('');
+
+            assert('localStorage tem usuarios', saved.usuarios?.length >= 2);
+            assert('localStorage tem cursos', saved.cursos?.length >= 1);
+            assert('localStorage tem aulas', saved.aulas?.length >= 1);
+
+            // 3. Verificar que as aulas têm URL
+            const aula = saved.aulas[0];
+            assert('Primeira aula tem urlConteudo', !!aula?.urlConteudo);
+            if (aula) {
+                log.push(`  → Aula: "${aula.titulo}" | URL: ${aula.urlConteudo}`);
+            }
+
+            // 4. Verificar que os cursos têm preço
+            const curso = saved.cursos[0];
+            assert('Primeiro curso tem campo preco', curso?.preco !== undefined);
+            if (curso) {
+                log.push(`  → Curso: "${curso.titulo}" | Preço: R$ ${Number(curso.preco).toFixed(2)}`);
+            }
+        }
+
+        // 5. Verificar que o counters também salvou
+        const rawCtr = localStorage.getItem('ph_counters_v3');
+        assert('localStorage ph_counters_v3 existe', rawCtr !== null);
+        if (rawCtr) {
+            const ctr = JSON.parse(rawCtr);
+            assert('Counter de usuario > 1', ctr.usuario > 1);
+            assert('Counter de aula > 1', ctr.aula > 1);
+        }
+
+        // 6. Teste de push e re-save
+        const beforeCount = db.cursos.length;
+        db.cursos.push({ id: 999, titulo: '__TESTE__', preco: 99.99 });
+        const afterRaw = JSON.parse(localStorage.getItem('ph_db_v3'));
+        const testFound = afterRaw.cursos.find(c => c.id === 999);
+        assert('Push salvou automaticamente no localStorage', !!testFound);
+
+        // Limpar item de teste
+        const idx = db.cursos.findIndex(c => c.id === 999);
+        if (idx >= 0) db.cursos.splice(idx, 1);
+        saveDb();
+        assert('Cleanup: cursos voltou ao tamanho original', db.cursos.length === beforeCount);
+
+        // ── Resultado final ──
+        log.push('');
+        log.push(`══════════════════════════════════════`);
+        log.push(`  ${passed} passed, ${failed} failed`);
+        log.push(`══════════════════════════════════════`);
+
+        out.innerHTML = log.map(l => {
+            if (l.startsWith('✅')) return `<span class="pass">${l}</span>`;
+            if (l.startsWith('❌')) return `<span class="fail">${l}</span>`;
+            return l;
+        }).join('\n');
+    </script>
+</body>
+</html>

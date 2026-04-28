@@ -9,8 +9,8 @@
  *            Controllers não precisam mudar.
  */
 
-const LS_DB  = 'ph_db_v1';
-const LS_CTR = 'ph_counters_v1';
+const LS_DB  = 'ph_db_v3';
+const LS_CTR = 'ph_counters_v3';
 
 // ── Estado em memória ──────────────────────────────────────────────────────────
 export const db = {

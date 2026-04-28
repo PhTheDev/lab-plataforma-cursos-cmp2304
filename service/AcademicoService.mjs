@@ -16,10 +16,10 @@ export class AcademicoService {
   }
 
   // ── Cursos ───────────────────────────────────────────────────────────────────
-  salvarCurso({ titulo, descricao, idInstrutor, idCategoria, nivel, dataPublicacao, totalHoras }) {
+  salvarCurso({ titulo, descricao, idInstrutor, idCategoria, nivel, dataPublicacao, totalHoras, preco }) {
     const curso = new Curso(
       counters.curso++, titulo, descricao,
-      idInstrutor, idCategoria, nivel, dataPublicacao, totalHoras
+      idInstrutor, idCategoria, nivel, dataPublicacao, totalHoras, preco
     );
     db.cursos.push(curso);
     return curso;

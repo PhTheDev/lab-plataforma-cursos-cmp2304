@@ -78,7 +78,8 @@ export function initAcademicoHandlers() {
       idCategoria: Number(document.getElementById('cursoCategoria').value),
       nivel: document.getElementById('cursoNivel').value,
       dataPublicacao: document.getElementById('cursoData').value || new Date().toISOString().slice(0, 10),
-      totalHoras: Number(document.getElementById('cursoHoras').value || 0)
+      totalHoras: Number(document.getElementById('cursoHoras').value || 0),
+      preco: Number(document.getElementById('cursoPreco')?.value || 0)
     });
     form.reset();
     refreshSelects();

@@ -1330,6 +1330,186 @@ section > h2 {
   }
 }
 
+/* ══════════════════════════════════════════════════════════════════════════════
+   BILLING — Price tags, Checkout modal, Toast
+══════════════════════════════════════════════════════════════════════════════ */
+
+/* Price tag nos course cards */
+.course-price-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: rgba(34, 211, 238, 0.15);
+  color: #67e8f9;
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  white-space: nowrap;
+}
+
+.course-price-tag.free {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.course-price-tag.owned {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+/* Botão accent (comprar) */
+.btn-accent {
+  background: linear-gradient(135deg, #0891b2, #22d3ee) !important;
+  color: #0f172a !important;
+  border: none !important;
+  font-weight: 700 !important;
+}
+
+.btn-accent:hover {
+  background: linear-gradient(135deg, #06b6d4, #67e8f9) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 18px rgba(34, 211, 238, 0.35) !important;
+}
+
+/* Checkout Modal */
+.checkout-modal-content {
+  background: rgba(15, 23, 42, 0.95) !important;
+  border: 1px solid rgba(100, 116, 139, 0.35);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(16px);
+  color: #e2e8f0;
+}
+
+.checkout-modal-header {
+  border-bottom-color: rgba(100, 116, 139, 0.25) !important;
+  padding: 1.25rem 1.5rem;
+}
+
+.checkout-modal-footer {
+  border-top-color: rgba(100, 116, 139, 0.25) !important;
+  padding: 1rem 1.5rem;
+}
+
+/* Resumo do curso no checkout */
+.checkout-course-summary {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(100, 116, 139, 0.25);
+  border-radius: 0.85rem;
+  padding: 1rem;
+}
+
+.checkout-icon {
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 0.65rem;
+  background: rgba(34, 211, 238, 0.15);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #67e8f9;
+  flex-shrink: 0;
+}
+
+.checkout-curso-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin: 0 0 0.3rem;
+}
+
+.checkout-curso-desc {
+  font-size: 0.82rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+/* Seleção de método de pagamento */
+.checkout-methods {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.checkout-method-option {
+  flex: 1;
+  cursor: pointer;
+}
+
+.checkout-method-option input[type="radio"] {
+  display: none;
+}
+
+.checkout-method-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(100, 116, 139, 0.4);
+  background: rgba(15, 23, 42, 0.6);
+  color: #94a3b8;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.checkout-method-option input[type="radio"]:checked + .checkout-method-label {
+  border-color: rgba(34, 211, 238, 0.6);
+  background: rgba(34, 211, 238, 0.1);
+  color: #67e8f9;
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.25);
+}
+
+.checkout-method-label:hover {
+  border-color: rgba(100, 116, 139, 0.65);
+  background: rgba(30, 41, 59, 0.5);
+}
+
+/* Barra de total */
+.checkout-total-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(100, 116, 139, 0.25);
+  border-radius: 0.65rem;
+}
+
+.checkout-total-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #67e8f9;
+}
+
+/* Toast de confirmação */
+.aluno-toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(16, 185, 129, 0.95);
+  color: #fff;
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.aluno-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;

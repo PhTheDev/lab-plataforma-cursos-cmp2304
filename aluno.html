@@ -129,6 +129,83 @@
         </div>
     </footer>
 
+    <!-- ══ Modal: Checkout ════════════════════════════════════════════════════ -->
+    <div class="modal fade" id="checkoutModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content checkout-modal-content">
+
+                <div class="modal-header checkout-modal-header">
+                    <h3 class="modal-title h5">
+                        <i class="bi bi-bag-check-fill me-2 text-accent"></i>Checkout
+                    </h3>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Fechar"></button>
+                </div>
+
+                <div class="modal-body">
+                    <!-- Resumo do curso -->
+                    <div class="checkout-course-summary">
+                        <div class="d-flex align-items-start gap-3">
+                            <div class="checkout-icon">
+                                <i class="bi bi-play-circle-fill"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h4 id="checkoutCursoTitulo" class="checkout-curso-name">Curso</h4>
+                                <p id="checkoutCursoDesc" class="checkout-curso-desc mb-2"></p>
+                                <div class="d-flex gap-3 text-muted small">
+                                    <span><i class="bi bi-bar-chart me-1"></i><span
+                                            id="checkoutCursoNivel">-</span></span>
+                                    <span><i class="bi bi-clock me-1"></i><span
+                                            id="checkoutCursoHoras">-</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Método de pagamento -->
+                    <div id="checkoutPaySection" class="checkout-pay-section mt-3">
+                        <label class="form-label small text-muted mb-2">Método de pagamento</label>
+                        <div class="checkout-methods">
+                            <label class="checkout-method-option">
+                                <input type="radio" name="checkoutMetodoRadio" value="PIX" id="checkoutMetodo"
+                                    checked />
+                                <span class="checkout-method-label">
+                                    <i class="bi bi-qr-code me-2"></i>PIX
+                                </span>
+                            </label>
+                            <label class="checkout-method-option">
+                                <input type="radio" name="checkoutMetodoRadio" value="Cartão" />
+                                <span class="checkout-method-label">
+                                    <i class="bi bi-credit-card me-2"></i>Cartão
+                                </span>
+                            </label>
+                            <label class="checkout-method-option">
+                                <input type="radio" name="checkoutMetodoRadio" value="Boleto" />
+                                <span class="checkout-method-label">
+                                    <i class="bi bi-upc-scan me-2"></i>Boleto
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Total -->
+                    <div class="checkout-total-bar mt-3">
+                        <span class="text-muted">Total</span>
+                        <span id="checkoutTotal" class="checkout-total-value">R$ 0,00</span>
+                    </div>
+                </div>
+
+                <div class="modal-footer checkout-modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="btnConfirmarCompra" class="btn btn-primary" data-curso-id="">
+                        <i class="bi bi-shield-check me-2"></i><span id="checkoutBtnLabel">Confirmar</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
